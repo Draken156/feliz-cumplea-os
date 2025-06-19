@@ -294,14 +294,41 @@
             <h1>¡Feliz Cumpleaños!</h1>
             <p>Que este día esté lleno de alegría, amor y bendiciones</p>
         </header>
-<!-- Botón para reproducir canción -->
-<div style="text-align:center; margin-top: 30px;">
-    
-    <audio controls autoplay loop muted>
-  <source src="audio/te-lo-prometo.mp3">
-  Tu navegador no soporta audio HTML5.
-</audio>
+<!-- Reproductor de audio mejorado -->
+<div class="audio-player" style="text-align: center; margin: 30px auto; max-width: 500px;">
+    <audio id="cumpleAudio" controls style="width: 100%;">
+        <source src="C:\Users\neryx\OneDrive\Escritorio\githob\feliz-cumplea-os\assets\audio\HUMBE - Te Lo Prometo.mp3" type="audio/mpeg">
+        <source src="assets/audio/NUMBE-Te-Lo-Prometo.ogg" type="audio/ogg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <div class="player-controls" style="margin-top: 10px;">
+        <button onclick="document.getElementById('cumpleAudio').play()" 
+                style="background: #ff6b6b; color: white; border: none; padding: 8px 15px; border-radius: 20px; margin: 0 5px;">
+            ▶ Reproducir
+        </button>
+        <button onclick="document.getElementById('cumpleAudio').pause()" 
+                style="background: #ff8e8e; color: white; border: none; padding: 8px 15px; border-radius: 20px; margin: 0 5px;">
+            ⏸ Pausar
+        </button>
+        <button onclick="document.getElementById('cumpleAudio').volume += 0.1" 
+                style="background: #ffb347; color: white; border: none; padding: 8px 15px; border-radius: 20px; margin: 0 5px;">
+            🔊 Subir
+        </button>
+        <button onclick="document.getElementById('cumpleAudio').volume -= 0.1" 
+                style="background: #ff9a9e; color: white; border: none; padding: 8px 15px; border-radius: 20px; margin: 0 5px;">
+            🔉 Bajar
+        </button>
+    </div>
 </div>
+
+<script>
+    // Intenta reproducir automáticamente después de la interacción del usuario
+    document.addEventListener('click', function() {
+        const audio = document.getElementById('cumpleAudio');
+        audio.volume = 0.5; // Volumen moderado por defecto
+        audio.play().catch(e => console.log("Autoplay bloqueado:", e));
+    }, { once: true });
+</script>
 
         
         <div class="tabs">
