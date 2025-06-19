@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff0f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 15px rgba(233, 30, 99, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: headerGlow 2s infinite alternate;
+        }
+        
+        @keyframes headerGlow {
+            0% { box-shadow: 0 8px 15px rgba(233, 30, 99, 0.3); }
+            100% { box-shadow: 0 8px 25px rgba(233, 30, 99, 0.5); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            border-radius: 50px;
+            margin: 5px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-button:hover {
+            background: linear-gradient(45deg, #fad0c4, #ff9a9e);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(233, 30, 99, 0.3);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .message {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .blessing {
+            font-style: italic;
+            color: #ff6b6b;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.4em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            animation: colorChange 5s infinite alternate;
+        }
+        
+        @keyframes colorChange {
+            0% { color: #ff6b6b; }
+            50% { color: #ff8e8e; }
+            100% { color: #e91e63; }
+        }
+        
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .gallery img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 3px solid #ffccd5;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .next-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+            font-weight: bold;
+        }
+        
+        .next-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(233, 30, 99, 0.4);
+        }
+        
+        /* Globos */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            z-index: 0;
+            opacity: 0.7;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        /* Crear globos de diferentes colores y posiciones */
+        .balloon:nth-child(1) {
+            background-color: #ff6b6b;
+            left: 10%;
+            top: 20%;
+            animation-duration: 7s;
+            width: 40px;
+            height: 50px;
+        }
+        
+        .balloon:nth-child(2) {
+            background-color: #ffb347;
+            right: 15%;
+            top: 30%;
+            animation-duration: 9s;
+            width: 55px;
+            height: 65px;
+        }
+        
+        .balloon:nth-child(3) {
+            background-color: #7bc043;
+            left: 20%;
+            top: 60%;
+            animation-duration: 6s;
+            width: 45px;
+            height: 55px;
+        }
+        
+        .balloon:nth-child(4) {
+            background-color: #6a4c93;
+            right: 25%;
+            top: 70%;
+            animation-duration: 8s;
+        }
+        
+        .balloon:nth-child(5) {
+            background-color: #ff8e8e;
+            left: 30%;
+            top: 40%;
+            animation-duration: 10s;
+            width: 60px;
+            height: 70px;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.7;
+            animation: confettiFall 5s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .tab-button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            
+            .message {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Globos flotantes -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    
+    <!-- Confeti -->
+    <div id="confetti-container"></div>
+    
+    <div class="container">
+        <header>
+            <h1>¡Feliz Cumpleaños!</h1>
+            <p>Que este día esté lleno de alegría, amor y bendiciones</p>
+        </header>
+<!-- Botón para reproducir canción -->
+<div style="text-align:center; margin-top: 30px;">
+    
+    <audio controls autoplay loop muted>
+  <source src="audio/te-lo-prometo.mp3">
+  Tu navegador no soporta audio HTML5.
+</audio>
+</div>
+
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'mensaje')">🎉</button>
+            <button class="tab-button" onclick="openTab(event, 'bendiciones')">🙏</button>
+            <button class="tab-button" onclick="openTab(event, 'animos')">💪</button>
+            <button class="tab-button" onclick="openTab(event, 'recuerdos')">📸</button>
+        </div>
+        
+        <div id="mensaje" class="tab-content active">
+            <div class="message">
+                <p>🎈 ¡En este día tan especial queremos celebrarte! 🎈</p>
+                <p>✨ Eres una persona increíble que ilumina la vida de quienes te rodean. ✨</p>
+                <p>🎂 Que este nuevo año de vida esté lleno de salud, amor, prosperidad y muchas bendiciones. 🎁</p>
+                <p>🥳 Disfruta cada momento de este día mágico, ¡te lo mereces! 🎊</p>
+            </div>
+            
+            <div class="blessing">
+                <p>Que Dios te bendiga hoy y siempre, guíe tus pasos y llene tu corazón de paz y alegría infinita.</p>
+            </div>
+            
+            <button class="next-btn" onclick="nextTab()">Siguiente →</button>
+        </div>
+        
+        <div id="bendiciones" class="tab-content">
+            <div class="message">
+                <ul style="text-align: left; max-width: 600px; margin: 20px auto; font-size: 1.2em;">
+                    <li>🌈 Que Dios te conceda salud y fortaleza para cada día</li>
+                    <li>🕊️ Que cada amanecer esté lleno de su amor y protección divina</li>
+                    <li>🌻 Que encuentres felicidad en las pequeñas cosas de la vida</li>
+                    <li>⭐ Que tus sueños se hagan realidad más allá de lo que imaginas</li>
+                    <li>☮️ Que nunca falte la paz en tu corazón y en tu hogar</li>
+                    <li>💖 Que el amor te rodee hoy y todos los días de tu vida</li>
+                </ul>
+            </div>
+            
+            <div class="blessing">
+                <p>"❤️ "Está bien sentirse cansado, pero nunca dejes de creer en ti."
+            </div>
+            
+            <button class="next-btn" onclick="nextTab()">Siguiente →</button>
+        </div>
+        
+        <div id="animos" class="tab-content">
+            <div class="message">
+                <p>💫 Quiero animarte en este dia tan especial:</p>
+                <p>🔥 Eres más fuerte de lo que crees, más capaz de lo que imaginas y más especial de lo que piensas.</p>
+                <p>🌱 Cada año que pasa es una nueva oportunidad para crecer, aprender, amar y ser feliz.</p>
+                <p>🛡️ No importan los desafíos, porque con Dios a tu lado y con el amor de quienes te rodean, podrás superarlos todos.</p>
+                <p>😊 ¡Sigue adelante con esa sonrisa que tanto nos alegra y contagia tu luz a los demás!</p>
+                <p>🌟 Recuerda que eres única, especial y muy amado.</p>
+            </div>
+            
+            <div class="blessing">
+                <p>🌟 "Eres más fuerte de lo que crees y más capaz de lo que imaginas."
+                    .</p>
+            </div>
+            
+            <button class="next-btn" onclick="nextTab()">Siguiente →</button>
+        </div>
+        
+        <div id="recuerdos" class="tab-content">
+            <div class="gallery">
+                <img src="images/foto.jpg">
+
+               <img src="images/foto.jpg">
+
+                 alt="Globos">
+               <img src="images/foto.jpg">
+
+                 alt="Pastel">
+              <img src="images/foto.jpg">
+
+                 alt="Regalos">
+                <img src="images/foto.jpg">
+
+                 alt="Fiesta">
+             <img src="images/foto.jpg">
+
+                 alt="Brindis">
+            </div>
+            
+            <div class="blessing" style="margin-top: 40px;">
+                <p>Que los recuerdos felices del pasado sean solo el comienzo de los maravillosos momentos que están por venir.
+                    💖 “Eres hermosa, y no solo por fuera, sino por todo lo que llevas dentro. Nunca lo olvides.”
+                    te quiero mucho mi corazón ❤️
+                    .</p>
+            </div>
+            
+            <button class="next-btn" onclick="nextTab()">Volver al inicio</button>
+        </div>
+        
+        <footer>
+            <p>Con mucho cariño en tu día especial ❤️ ¡Eres muy especial para mi nunca lo olvides!❤️
+                 </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Navegación entre pestañas
+        let currentTab = 0;
+        const tabs = ['mensaje', 'bendiciones', 'animos', 'recuerdos'];
+        
+        function openTab(evt, tabName) {
+            // Oculta todos los contenidos de las pestañas
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Desactiva todos los botones de las pestañas
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Muestra la pestaña actual y activa su botón
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            // Actualiza el índice de la pestaña actual
+            currentTab = tabs.indexOf(tabName);
+        }
+        
+        function nextTab() {
+            currentTab = (currentTab + 1) % tabs.length;
+            const nextTabName = tabs[currentTab];
+            
+            // Oculta todos los contenidos de las pestañas
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Desactiva todos los botones de las pestañas
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Muestra la siguiente pestaña y activa su botón
+            document.getElementById(nextTabName).classList.add("active");
+            tabButtons[currentTab].classList.add("active");
+            
+            // Crear confeti al cambiar de pestaña
+            createConfetti();
+        }
+        
+        // Crear confeti
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#ffb347', '#7bc043', '#6a4c93', '#ff8e8e', '#00b4d8'];
+            const container = document.getElementById('confetti-container');
+            
+            // Limpiar confeti anterior
+            container.innerHTML = '';
+            
+            // Crear nuevo confeti
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Crear confeti inicial
+        window.onload = function() {
+            createConfetti();
+        };
+    </script>
+</body>
+</html>
